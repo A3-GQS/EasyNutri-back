@@ -1,26 +1,36 @@
+const mongoose = require('mongoose');
+const { ServerApiVersion } = require('mongodb');
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://admin:admin_ADMIN@easynutri.twiu78y.mongodb.net/?retryWrites=true&w=majority&appName=EasyNutri";
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      dbName: process.env.DB_NAME,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverApi: ServerApiVersion.v1
+    });
+    console.log('MongoDB conectado com sucesso');
+  } catch (err) {
+    console.error('Erro na conexão com MongoDB:', err.message);
+    process.exit(1);
   }
+};
+
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose conectado ao DB');
 });
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
+mongoose.connection.on('error', (err) => {
+  console.log('Erro na conexão do Mongoose:', err.message);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('Mongoose desconectado');
+});
+
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  process.exit(0);
+});
+
+module.exports = connectDB;
