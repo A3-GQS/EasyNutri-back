@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 app.use('/api/users', require('./routes/Users'));
 app.use('/api/diets', require('./routes/Diets'));
 app.use('/api/calculations', require('./routes/Calculations'));
+app.use('/api/payments', require('./routes/paymentRoutes'));
 
 // Manipulador de erros
 app.use((err, req, res, next) => {
