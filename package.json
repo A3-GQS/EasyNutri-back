@@ -1,11 +1,11 @@
 {
     "name": "easynutri-back",
     "version": "1.0.0",
-    "description": "API para recomendações nutricionais com IA",
     "main": "app.js",
     "scripts": {
         "start": "node app.js",
-        "dev": "nodemon app.js"
+        "build": "npm install --production && npm prune --production",
+        "test": "jest"
     },
     "dependencies": {
         "axios": "^1.9.0",
@@ -16,21 +16,20 @@
         "joi": "^17.13.3",
         "mongodb": "^6.16.0",
         "mongoose": "^8.15.1",
-        "npm": "^11.4.1",
-        "openai": "^4.104.0"
+        "openai": "^4.104.0",
+        "winston": "^3.17.0",
+        "winston-daily-rotate-file": "^5.0.0"
     },
     "devDependencies": {
         "@types/jest": "^29.5.14",
         "@types/supertest": "^6.0.3",
         "jest": "^29.7.0",
         "mongodb-memory-server": "^10.1.4",
-        "nodemon": "^3.1.7",
+        "nodemon": "^3.1.10",
         "supertest": "^7.1.1"
     },
     "engines": {
-        "node": "^23.1.0",
-        "npm": "^11.0.0"
-    },
-    "author": "Anna Clara Gomes",
-    "license": "ISC"
+        "node": "20.x",
+        "npm": "10.x"
+    }
 }
