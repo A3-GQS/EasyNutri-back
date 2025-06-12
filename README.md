@@ -37,6 +37,7 @@ NutriFácil é uma solução completa para planejamento alimentar personalizado,
 
 ## Estrutura do Projeto
 
+```
 /EASYBUTRI-BACK
 ├── /config              # Configurações do sistema e conexões
 ├── /controllers         # Controladores para as rotas da aplicação
@@ -50,29 +51,38 @@ NutriFácil é uma solução completa para planejamento alimentar personalizado,
 ├── .env                 # Variáveis de ambiente (não versionar)
 ├── package.json         # Dependências do projeto
 └── README.md            # Documentação do projeto
+```
 
 ## Configuração do Ambiente
 
 1. Clone este repositório:
 
+```
 git clone <https://github.com/byasun/EasyNutri-back.git>
 cd EASYBUTRI-BACK
+```
 
 2. Instale as dependências:
 
+```
 npm install
+```
 
 3. Configure as variáveis de ambiente no arquivo `.env`. Exemplo:
 
+```
 PORT=3000
 MONGODB_URI=seu_string_de_conexao_mongodb
 OPENAI_API_KEY=sua_chave_openai
 MERCADOPAGO_ACCESS_TOKEN=seu_token_mercadopago
 NODE_ENV=development
+```
 
 4. Inicie o servidor:
 
+```
 npm start
+```
 
 ---
 
