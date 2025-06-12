@@ -105,7 +105,7 @@ npm start
 
 ## Testes
 
-Ainda em desenvolvimento. Recomendamos criar testes unitários e de integração para garantir a qualidade do sistema.
+Ainda em desenvolvimento. 
 
 ---
 
@@ -115,25 +115,16 @@ Ainda em desenvolvimento. Recomendamos criar testes unitários e de integração
 - As rotas protegidas requerem autenticação com token JWT.
 - As integrações externas (OpenAI e Mercado Pago) usam variáveis de ambiente para configuração.
 - O sistema registra logs detalhados em `/logs` para facilitar o monitoramento e debug.
-- Documente todas as alterações e mantenha o README atualizado para melhor manutenção colaborativa.
-
----
-
-## Apresentação
-
-Para apresentar o projeto, recomendamos a estrutura dos slides:
-
-1. Introdução
-2. Motivação
-3. Desenvolvimento
-4. Resultados
-5. Considerações Finais
 
 ---
 
 ## Contato
 
 Para dúvidas ou contribuições, entre em contato com a equipe do projeto.
+
+Anna Clara - byasun
+Gabriel Bernardes - Gabber28
+Lucas Ramos - LucasRramos
 
 ---
 
