@@ -27,6 +27,9 @@ jobs:
           # Remove devDependencies e cache
           npm prune --production
 
+      - name: Check installed packages
+        run: npm list dotenv  # Verifica se o dotenv está instalado
+
       - name: Zip artifact for deployment
         run: |
           # Cria zip apenas com os arquivos necessários
@@ -57,9 +60,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
-      - name: Add delay to avoid SCM restart conflict
-        run: sleep 30s  # Aguarda 30 segundos antes do deploy
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -75,8 +75,3 @@ jobs:
           slot-name: 'Production'
           package: .
           clean: true  # Limpa o diretório antes do deploy
-
-      - name: Start the application
-        run: |
-          npm install  # Certifique-se de que as dependências estão instaladas
-          npm start  # Inicie o aplicativo
