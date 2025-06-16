@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const CalculationController = require('../controllers/calculationController');
+const CalculationController = require('../controllers/calculations');
 
 // @route   POST /api/calculations/tmb
 // @desc    Calculate Basal Metabolic Rate (TMB)
