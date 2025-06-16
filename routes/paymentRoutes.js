@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const PaymentController = require('../controllers/paymentController');
-const signatureMiddleware = require('../middlewares/paymentSignature');
+const signatureMiddleware = require('../middleware/paymentSignature');
 
 // Rota para webhook de pagamento
 router.post('/webhook', signatureMiddleware, async (req, res) => {

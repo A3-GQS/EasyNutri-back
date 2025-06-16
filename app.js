@@ -5,57 +5,72 @@ const connectDB = require('./config/db');
 const logger = require('./config/logger'); // Importe seu logger
 
 const app = express();
+try {
+  // Middlewares
+  // Configuração simplificada de CORS
+  const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    'http://localhost:3000'
+  ].filter(Boolean); // Remove valores undefined
 
-// Middlewares
-app.use(cors());
-app.use(express.json());
+  app.use(cors({
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
 
-// Middleware de logging para todas as requisições
-app.use((req, res, next) => {
-  logger.info(`${req.method} ${req.originalUrl}`);
-  next();
-});
+  app.use(express.json());
 
-// Conexão com o banco de dados
-connectDB();
-
-// Rotas
-app.get('/', (req, res) => {
-  logger.debug('Acessando rota raiz');
-  res.json({ message: 'API EasyNutri funcionando' });
-});
-
-// Suas rotas existentes
-app.use('/api/users', require('./routes/users'));
-app.use('/api/diets', require('./routes/diets'));
-app.use('/api/calculations', require('./routes/calculations'));
-app.use('/api/payments', require('./routes/paymentRoutes'));
-
-// Manipulador de erros aprimorado
-app.use((err, req, res, next) => {
-  logger.error('Erro interno:', {
-    message: err.message,
-    stack: err.stack,
-    path: req.originalUrl
+  // Middleware de logging para todas as requisições
+  app.use((req, res, next) => {
+    logger.info(`${req.method} ${req.originalUrl}`);
+    next();
   });
-  
-  res.status(500).json({ 
-    error: 'Erro interno do servidor',
-    ...(process.env.NODE_ENV !== 'production' && { details: err.message })
+
+  // Conexão com o banco de dados
+  connectDB();
+
+  // Rotas
+  app.get('/', (req, res) => {
+    logger.debug('Acessando rota raiz');
+    res.json({ message: 'API EasyNutri funcionando' });
   });
-});
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  logger.info(`Servidor rodando na porta ${PORT} [${process.env.NODE_ENV || 'development'}]`);
-});
+  // Suas rotas existentes
+  app.use('/api/users', require('./routes/users'));
+  app.use('/api/diets', require('./routes/diets'));
+  app.use('/api/calculations', require('./routes/calculations'));
+  app.use('/api/payments', require('./routes/paymentRoutes'));
 
-// Captura de erros não tratados
-process.on('unhandledRejection', (reason) => {
-  logger.error('Rejeição não tratada:', reason);
-});
+  // Manipulador de erros aprimorado
+  app.use((err, req, res, next) => {
+    logger.error('Erro interno:', {
+      message: err.message,
+      stack: err.stack,
+      path: req.originalUrl
+    });
 
-process.on('uncaughtException', (error) => {
-  logger.error('Exceção não capturada:', error);
-  process.exit(1);
-});
+    res.status(500).json({
+      error: 'Erro interno do servidor',
+      ...(process.env.NODE_ENV !== 'production' && { details: err.message })
+    });
+  });
+
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`[TESTE] Servidor rodando na porta ${PORT}`); // Linha adicional
+    logger.info(`Servidor rodando na porta ${PORT} [${process.env.NODE_ENV || 'development'}]`);
+  });
+
+  // Captura de erros não tratados
+  process.on('unhandledRejection', (reason) => {
+    logger.error('Rejeição não tratada:', reason);
+  });
+
+  process.on('uncaughtException', (error) => {
+    logger.error('Exceção não capturada:', error);
+    process.exit(1);
+  });
+} catch (error) {
+  console.error('Erro na inicialização:', error);
+}

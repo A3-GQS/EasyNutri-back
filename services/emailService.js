@@ -1,13 +1,14 @@
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 const config = require('../config/environment');
 
 class EmailService {
   constructor() {
     this.transporter = nodemailer.createTransport({
-      service: config.email.service,
+      service: process.env.EMAIL_SERVICE,
       auth: {
-        user: config.email.user,
-        pass: config.email.pass
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
       }
     });
   }
