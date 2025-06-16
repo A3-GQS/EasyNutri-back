@@ -16,9 +16,12 @@
         "joi": "^17.13.3",
         "mongodb": "^6.16.0",
         "mongoose": "^8.15.1",
-        "nodemailer": "^7.0.3",
+        "node-fetch": "^3.3.2",
         "openai": "^4.104.0",
         "pdfkit": "^0.17.1",
+        "punycode": "^2.3.1",
+        "twilio": "^5.7.1",
+        "nodemailer": "^7.0.3",
         "winston": "^3.17.0",
         "winston-daily-rotate-file": "^5.0.0"
     },
