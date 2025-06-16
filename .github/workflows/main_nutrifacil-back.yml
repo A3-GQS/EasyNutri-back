@@ -75,3 +75,8 @@ jobs:
           slot-name: 'Production'
           package: .
           clean: true  # Limpa o diretório antes do deploy
+
+      - name: Start the application
+        run: |
+          npm install  # Certifique-se de que as dependências estão instaladas
+          npm start  # Inicie o aplicativo
