@@ -26,13 +26,11 @@ jobs:
           npm run build --if-present
           # Remove devDependencies e cache
           npm prune --production
-          rm -rf node_modules
-          rm -f package-lock.json
 
       - name: Zip artifact for deployment
         run: |
           # Cria zip apenas com os arquivos necessários
-          zip -r release.zip . -x '*.git*' '*.github*' 'node_modules/*'
+          zip -r release.zip . -x '*.git*' '*.github*' 'node_modules/*' 'release.zip'
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
