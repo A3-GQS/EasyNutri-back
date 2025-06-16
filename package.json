@@ -16,8 +16,13 @@
         "joi": "^17.13.3",
         "mongodb": "^6.16.0",
         "mongoose": "^8.15.1",
-        "npm": "^11.4.1",
-        "openai": "^4.104.0"
+        "node-fetch": "^3.3.2",
+        "openai": "^4.104.0",
+        "pdfkit": "^0.17.1",
+        "punycode": "^2.3.1",
+        "twilio": "^5.7.1",
+        "winston": "^3.17.0",
+        "winston-daily-rotate-file": "^5.0.0"
     },
     "devDependencies": {
         "@types/jest": "^29.5.14",
@@ -28,9 +33,7 @@
         "supertest": "^7.1.1"
     },
     "engines": {
-        "node": "^23.1.0",
-        "npm": "^11.0.0"
-    },
-    "author": "Anna Clara Gomes",
-    "license": "ISC"
+        "node": "22.x",
+        "npm": "10.x"
+    }
 }
