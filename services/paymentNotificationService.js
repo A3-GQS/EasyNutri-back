@@ -12,11 +12,6 @@ class PaymentNotificationService {
       apiUrl: config.mercadoPago.apiUrl || 'https://api.mercadopago.com'
     };
 
-    this.whatsAppConfig = {
-      apiUrl: config.whatsApp.apiUrl,
-      apiKey: config.whatsApp.apiKey,
-      senderNumber: config.whatsApp.senderNumber
-    };
   }
 
   async handlePaymentNotification(paymentId) {
