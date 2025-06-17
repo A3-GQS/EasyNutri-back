@@ -42,96 +42,138 @@ class PDFService {
   }
 
   static _addHeader(doc, userData) {
+    // Cabeçalho com fundo branco e texto preto
     doc
-      .fillColor('#333333')
-      .fontSize(20)
-      .text('Plano Nutricional Personalizado', { align: 'center' })
-      .moveDown(0.5);
-
+      .fill('#ffffff')
+      .rect(0, 0, 612, 80)
+      .fill();
+    
+    // Título principal
+    doc
+      .fillColor('#009688') // Verde água para o título
+      .fontSize(22)
+      .font('Helvetica-Bold')
+      .text('PLANO NUTRICIONAL PERSONALIZADO', { 
+        align: 'center',
+        lineGap: 5,
+        paragraphGap: 0,
+        y: 30
+      });
+    
+    // Subtítulo
     doc
       .fontSize(14)
-      .text(`Cliente: ${userData.name || ''}`, { align: 'center' })
-      .text(`Data: ${new Date().toLocaleDateString()}`, { align: 'center' })
-      .moveDown(1);
+      .font('Helvetica')
+      .fillColor('#333333') // Cinza escuro
+      .text(`Preparado para ${userData.name || ''}`, { 
+        align: 'center',
+        y: 60
+      });
 
-    // Add a decorative line
+    // Linha decorativa
     doc
       .strokeColor('#009688')
-      .lineWidth(2)
-      .moveTo(50, doc.y)
-      .lineTo(550, doc.y)
-      .stroke();
+      .lineWidth(1)
+      .moveTo(50, 90)
+      .lineTo(562, 90)
+      .stroke()
+      .moveDown(2);
   }
 
   static _addUserInfo(doc, userData) {
+    // Título da seção
     doc
-      .fillColor('#333333')
-      .fontSize(14)
-      .text('Informações do Usuário', { underline: true })
-      .moveDown(0.3);
+      .fillColor('#009688')
+      .fontSize(16)
+      .font('Helvetica-Bold')
+      .text('● Informações do Usuário', { underline: false })
+      .moveDown(0.5);
 
     const imc = CalculationService.calculateIMC(userData);
     const imcCategory = CalculationService.getIMCCategory(imc);
+    
+    // Formatação segura do IMC
+    const imcNumber = typeof imc === 'number' ? imc : parseFloat(imc) || 0;
+    const formattedIMC = !isNaN(imcNumber) ? imcNumber.toFixed(1) : 'N/A';
 
+    // Lista de informações
     doc
+      .fillColor('#444444')
       .fontSize(12)
-      .text(`Idade: ${userData.age} anos`)
-      .text(`Altura: ${userData.height} cm`)
-      .text(`Peso: ${userData.weight} kg`)
-      .text(`IMC: ${imc} (${imcCategory})`)
-      .text(`Objetivo: ${userData.goal || 'Não especificado'}`)
-      .text(`Tipo de Dieta: ${userData.dietType || 'Padrão'}`)
+      .font('Helvetica')
+      .text(`• Idade: ${userData.age || 'N/A'} anos`, { indent: 10 })
+      .text(`• Altura: ${userData.height || 'N/A'} cm`, { indent: 10 })
+      .text(`• Peso: ${userData.weight || 'N/A'} kg`, { indent: 10 })
+      .text(`• IMC: ${formattedIMC} (${imcCategory || 'N/A'})`, { indent: 10 })
+      .text(`• Objetivo: ${userData.goal || 'Não especificado'}`, { indent: 10 })
+      .text(`• Tipo de Dieta: ${userData.dietType || 'Padrão'}`, { indent: 10 })
+      .moveDown(1);
+
+    // Linha divisória
+    doc
+      .strokeColor('#eeeeee')
+      .lineWidth(1)
+      .moveTo(50, doc.y)
+      .lineTo(562, doc.y)
+      .stroke()
       .moveDown(1);
   }
 
   static _addNutritionalSummary(doc, recommendation, userData) {
+    // Título da seção
     doc
-      .fillColor('#333333')
-      .fontSize(14)
-      .text('Resumo Nutricional', { underline: true })
-      .moveDown(0.3);
-
-    doc
-      .fontSize(12)
-      .text(`Calorias Diárias: ${recommendation.dailyCalories.toFixed(0)} kcal`)
-      .text(`Ingestão de Água: ${recommendation.waterIntake} ml`)
+      .fillColor('#009688')
+      .fontSize(16)
+      .font('Helvetica-Bold')
+      .text('● Resumo Nutricional', { underline: false })
       .moveDown(0.5);
 
-    // Macronutrients table
+    // Dados nutricionais
+    doc
+      .fillColor('#444444')
+      .fontSize(12)
+      .text(`• Calorias Diárias: ${recommendation.dailyCalories?.toFixed(0) || 'N/A'} kcal`, { indent: 10 })
+      .text(`• Ingestão de Água: ${recommendation.waterIntake || 'N/A'} ml`, { indent: 10 })
+      .moveDown(1);
+
+    // Tabela de macronutrientes
     const macronutrients = recommendation.macronutrients || {};
     const startX = 50;
     const startY = doc.y;
 
-    // Table header
+    // Cabeçalho da tabela
     doc
+      .fill('#009688')
+      .rect(startX, startY, 500, 25)
+      .fill()
       .font('Helvetica-Bold')
       .fillColor('#ffffff')
-      .rect(startX, startY, 500, 20)
-      .fill('#009688')
-      .text('Macronutriente', startX + 10, startY + 5)
-      .text('Gramas', startX + 200, startY + 5)
-      .text('%', startX + 350, startY + 5)
-      .font('Helvetica');
+      .text('MACRONUTRIENTE', startX + 15, startY + 7)
+      .text('GRAMAS', startX + 200, startY + 7)
+      .text('% DIÁRIA', startX + 350, startY + 7);
 
-    // Table rows
+    // Linhas da tabela
     const rows = [
       { name: 'Proteínas', grams: macronutrients.protein?.grams || 0, percent: macronutrients.protein?.percentage || 0 },
       { name: 'Carboidratos', grams: macronutrients.carbs?.grams || 0, percent: macronutrients.carbs?.percentage || 0 },
       { name: 'Gorduras', grams: macronutrients.fats?.grams || 0, percent: macronutrients.fats?.percentage || 0 },
     ];
 
-    let currentY = startY + 20;
-    doc.fillColor('#333333');
+    let currentY = startY + 25;
+    doc.font('Helvetica');
 
     rows.forEach((row, i) => {
-      const bgColor = i % 2 === 0 ? '#f5f5f5' : '#ffffff';
+      const bgColor = i % 2 === 0 ? '#f8f8f8' : '#ffffff';
       doc
-        .rect(startX, currentY, 500, 20)
         .fill(bgColor)
-        .text(row.name, startX + 10, currentY + 5)
-        .text(row.grams.toFixed(0), startX + 200, currentY + 5)
-        .text(row.percent.toFixed(0), startX + 350, currentY + 5);
-      currentY += 20;
+        .rect(startX, currentY, 500, 25)
+        .fill()
+        .fillColor('#333333')
+        .text(row.name, startX + 15, currentY + 7)
+        .text(row.grams.toFixed(0), startX + 200, currentY + 7)
+        .text(row.percent.toFixed(0) + '%', startX + 350, currentY + 7);
+      
+      currentY += 25;
     });
 
     doc.moveDown(2);
@@ -139,30 +181,45 @@ class PDFService {
 
   static _addMealPlan(doc, recommendation) {
     doc
-      .fillColor('#333333')
-      .fontSize(14)
-      .text('Plano Alimentar Diário', { underline: true })
+      .fillColor('#009688')
+      .fontSize(16)
+      .font('Helvetica-Bold')
+      .text('● Plano Alimentar Diário', { underline: false })
       .moveDown(0.5);
 
-    recommendation.meals.forEach(meal => {
+    recommendation.meals?.forEach(meal => {
+      // Card para cada refeição
       doc
+        .fill('#f0f9f8')
+        .rect(50, doc.y, 512, 30)
+        .fill()
+        .fillColor('#009688')
         .font('Helvetica-Bold')
-        .text(meal.mealType)
-        .font('Helvetica');
+        .text(meal.mealType?.toUpperCase() || 'REFEIÇÃO', 60, doc.y + 8)
+        .moveDown(1.5);
 
-      meal.foods.forEach(food => {
+      meal.foods?.forEach(food => {
         doc
-          .text(`- ${food.name} (${food.quantity})`, { indent: 20 })
-          .text(`  Calorias: ${food.calories || 'N/A'} kcal | Categoria: ${food.category || 'N/A'}`, { indent: 40 });
+          .fillColor('#333333')
+          .font('Helvetica')
+          .text(`- ${food.name || 'Alimento'} (${food.quantity || 'N/A'})`, { indent: 20 })
+          .text(`  Calorias: ${food.calories || 'N/A'} kcal | Categoria: ${food.category || 'N/A'}`, { 
+            indent: 40,
+            color: '#555555',
+            fontSize: 11
+          });
         
         if (food.notes) {
           doc
             .fontSize(10)
-            .text(`  Observações: ${food.notes}`, { indent: 40, color: '#666666' })
+            .text(`  Observações: ${food.notes}`, { 
+              indent: 40, 
+              color: '#666666' 
+            })
             .fontSize(12);
         }
+        doc.moveDown(0.3);
       });
-
       doc.moveDown(0.5);
     });
   }
@@ -170,22 +227,40 @@ class PDFService {
   static _addTipsAndFooter(doc, recommendation) {
     doc
       .moveDown(1)
+      .fillColor('#009688')
+      .fontSize(16)
+      .font('Helvetica-Bold')
+      .text('● Dicas Nutricionais', { underline: false })
+      .moveDown(0.5);
+
+    // Card de dicas
+    doc
+      .fill('#f0f9f8')
+      .rect(50, doc.y, 512, 60)
+      .fill()
       .fillColor('#333333')
-      .fontSize(14)
-      .text('Dicas Nutricionais', { underline: true })
-      .moveDown(0.3);
-
-    doc
       .fontSize(12)
-      .text(recommendation.nutritionalTips || 'Nenhuma dica específica fornecida.')
-      .moveDown(1);
+      .font('Helvetica')
+      .text(recommendation.nutritionalTips || 'Nenhuma dica específica fornecida.', {
+        x: 60,
+        y: doc.y + 10,
+        width: 492,
+        align: 'left'
+      })
+      .moveDown(3);
 
-    // Footer
+    // Rodapé
     doc
+      .fillColor('#009688')
       .fontSize(10)
-      .fillColor('#666666')
-      .text('Este plano foi gerado automaticamente com base em suas informações. Consulte um nutricionista para orientações personalizadas.', { align: 'center' })
-      .text('© ' + new Date().getFullYear() + ' NutriApp - Todos os direitos reservados', { align: 'center' });
+      .text('Este plano foi gerado automaticamente com base em suas informações. Consulte um nutricionista para orientações personalizadas.', { 
+        align: 'center',
+        lineGap: 5
+      })
+      .fillColor('#888888')
+      .text('© ' + new Date().getFullYear() + ' NutriApp - Todos os direitos reservados', { 
+        align: 'center' 
+      });
   }
 }
 
