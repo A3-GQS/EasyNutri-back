@@ -56,5 +56,11 @@ module.exports = {
     accountSid: process.env.TWILIO_ACCOUNT_SID,
     authToken: process.env.TWILIO_AUTH_TOKEN,
     whatsAppNumber: process.env.TWILIO_WHATSAPP_NUMBER
-  }
+  },
+
+   mercadoPago: {
+    accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN, // Adicione esta linha
+    apiUrl: process.env.MERCADO_PAGO_API_URL || 'https://api.mercadopago.com' // Adicione esta linha
+  },
+
 };
