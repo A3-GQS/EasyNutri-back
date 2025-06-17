@@ -1,18 +1,49 @@
 const express = require('express');
 const router = express.Router();
 const PaymentController = require('../controllers/paymentController');
-const signatureMiddleware = require('../middleware/paymentSignature');
+const PaymentNotificationService = require('../services/paymentNotificationService');
 
-// Rota para webhook de pagamento
-router.post('/webhook', signatureMiddleware, async (req, res) => {
+// Endpoint para criar preferência de pagamento
+router.post('/create_preference', async (req, res) => {
+  console.log("Dados recebidos:", req.body);
   try {
-    const result = await PaymentController.handlePaymentConfirmation(req.body);
-    res.json(result);
+    const { celular, dieta, peso, altura, idade, sexo, alergias, objetivo, preferencia, whatsapp } = req.body;
+
+    const userData = {
+      phone: celular,
+      dieta,
+      peso,
+      altura,
+      idade,
+      sexo,
+      alergias,
+      objetivo,
+      preferencia,
+      whatsapp
+    };
+
+    const dietPlan = {
+      type: 'Plano Básico', // Exemplo de tipo de plano
+      price: 1.00, // Exemplo de preço
+    };
+
+    const preference = await PaymentNotificationService.createPaymentPreference(userData, dietPlan);
+    res.json(preference);
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: 'Erro ao processar pagamento'
-    });
+    res.status(500).json({ error: 'Erro ao criar preferência de pagamento' });
+  }
+});
+
+
+// Endpoint para confirmação de pagamento
+router.post('/confirmation', async (req, res) => {
+  try {
+    const paymentData = req.body;
+    // Aqui você pode processar os dados do pagamento, como verificar o status e atualizar o banco de dados
+    await PaymentController.handlePaymentConfirmation(paymentData);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao processar confirmação de pagamento' });
   }
 });
 
