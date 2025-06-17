@@ -1,24 +1,11 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const connectDB = require('./config/db');
 const logger = require('./config/logger'); // Importe seu logger
 
 const app = express();
 try {
   // Middlewares
-  // Configuração simplificada de CORS
-  const allowedOrigins = [
-    process.env.FRONTEND_URL,
-    'http://localhost:3000'
-  ].filter(Boolean); // Remove valores undefined
-
-  app.use(cors({
-    origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }));
-
   app.use(express.json());
 
   // Middleware de logging para todas as requisições

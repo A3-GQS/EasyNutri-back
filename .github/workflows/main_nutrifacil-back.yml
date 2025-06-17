@@ -27,9 +27,6 @@ jobs:
           # Remove devDependencies e cache
           npm prune --production
 
-      - name: Check installed packages
-        run: npm list dotenv  # Verifica se o dotenv está instalado
-
       - name: Zip artifact for deployment
         run: |
           # Cria zip apenas com os arquivos necessários
