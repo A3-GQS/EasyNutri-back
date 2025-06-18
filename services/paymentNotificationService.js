@@ -105,68 +105,85 @@ class PaymentNotificationService {
     }
   }
 
-  // Método para criar preferência de pagamento no Mercado Pago
-  async createPaymentPreference(userData, dietPlan) {
-    try {
-      const preferenceData = {
-        items: [
-          { 
-            title: `Plano Nutricional - ${dietPlan.type}`,
-            description: `Plano nutricional personalizado para ${userData.name}`,
-            quantity: 1,
-            unit_price: Number(dietPlan.price),
-            currency_id: 'BRL'
-          }
-        ],
-        payer: {
-          name: userData.name,
-          email: userData.email,
-          phone: {
-            area_code: userData.phone.substring(0, 2),
-            number: userData.phone.substring(2)
-          }
-        },
-        payment_methods: {
-          excluded_payment_types: [
-            { id: 'ticket' } // Excluir boleto se quiser
-          ],
-          installments: 1 // Número máximo de parcelas
-        },
-        notification_url: `${config.api.baseUrl}/payment/webhook`, // URL para receber notificações
-        external_reference: `user_${userData.id}`, // Referência para identificar o pagamento
-        metadata: {
-          userId: userData.id,
-          userData: JSON.stringify(userData),
-          dietType: dietPlan.type
-        },
-        back_urls: {
-          success: `${config.web.url}/payment/success`,
-          pending: `${config.web.url}/payment/pending`,
-          failure: `${config.web.url}/payment/failure`
-        },
-        auto_return: 'approved'
-      };
-
-      const response = await axios.post(
-        `${this.mercadoPagoConfig.apiUrl}/checkout/preferences`,
-        preferenceData,
-        {
-          headers: {
-            'Authorization': `Bearer ${this.mercadoPagoConfig.accessToken}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-
-      return {
-        paymentUrl: response.data.init_point,
-        paymentId: response.data.id
-      };
-    } catch (error) {
-      logger.error('Erro ao criar preferência de pagamento:', error.response?.data || error.message);
-      throw new Error('Falha ao criar link de pagamento');
+async createPaymentPreference(userData, dietPlan) {
+  try {
+    // Validação de campos obrigatórios
+    if (!userData.name || !userData.email || !userData.phone) {
+      throw new Error('Dados do usuário incompletos para pagamento');
     }
+
+    // Formatar telefone (remover caracteres não numéricos)
+    const cleanedPhone = userData.phone.replace(/\D/g, '');
+    
+    // Validar tamanho do telefone
+    if (cleanedPhone.length < 10 || cleanedPhone.length > 11) {
+      throw new Error(`Número de telefone inválido: ${userData.phone}`);
+    }
+
+    const area_code = cleanedPhone.substring(0, 2);
+    const number = cleanedPhone.substring(2);
+
+    const preferenceData = {
+      items: [
+        { 
+          title: `Plano Nutricional - ${dietPlan.type || 'Personalizado'}`,
+          description: `Plano nutricional para ${userData.name}`,
+          quantity: 1,
+          unit_price: Number(dietPlan.price || 97.90), // Valor padrão
+          currency_id: 'BRL'
+        }
+      ],
+      payer: {
+        name: userData.name,
+        email: userData.email,
+        phone: { area_code, number }
+      },
+      payment_methods: {
+        excluded_payment_types: [{ id: 'ticket' }],
+        installments: 1
+      },
+      notification_url: `${config.api.baseUrl}/payment/webhook`,
+      external_reference: `user_${userData.id || 'temp'}`,
+      metadata: {
+        userId: userData.id || 'temp-user',
+        userData: JSON.stringify(userData),
+        dietType: dietPlan.type || 'Standard'
+      },
+      back_urls: {
+        success: `${config.web.url}/payment/success`,
+        pending: `${config.web.url}/payment/pending`,
+        failure: `${config.web.url}/payment/failure`
+      },
+      auto_return: 'approved'
+    };
+
+    const response = await axios.post(
+      `${this.mercadoPagoConfig.apiUrl}/checkout/preferences`,
+      preferenceData,
+      {
+        headers: {
+          'Authorization': `Bearer ${this.mercadoPagoConfig.accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        timeout: 10000 // 10 segundos timeout
+      }
+    );
+
+    return {
+      paymentUrl: response.data.init_point || response.data.sandbox_init_point,
+      paymentId: response.data.id
+    };
+  } catch (error) {
+    // Log detalhado do erro
+    const errorDetails = error.response 
+      ? `Status: ${error.response.status} - Data: ${JSON.stringify(error.response.data)}`
+      : error.message;
+
+    logger.error('Erro detalhado ao criar preferência:', errorDetails);
+    
+    throw new Error('Falha ao criar link de pagamento');
   }
+}
 }
 
 module.exports = new PaymentNotificationService();

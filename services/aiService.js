@@ -30,14 +30,27 @@ class AIService {
     }
   }
 
-  _buildPrompt(userData) {
-    return `Você é um nutricionista especializado. Gere um plano alimentar detalhado em JSON com:
-    
-    - Dieta: ${userData.dietType}
-    - Objetivo: ${userData.goal}
-    - Dados: ${userData.age} anos, ${userData.height}cm, ${userData.weight}kg
-    - Alergias: ${userData.allergies.join(', ') || 'Nenhuma'}
-    - Preferências: ${JSON.stringify(userData.foodPreferences)}
+_buildPrompt(userData) {
+  // Converter campos string em arrays quando necessário
+  const allergiesArray = userData.allergies
+    ? typeof userData.allergies === 'string'
+      ? userData.allergies.split(',')
+      : userData.allergies
+    : [];
+
+  const foodPreferencesArray = userData.foodPreferences
+    ? typeof userData.foodPreferences === 'string'
+      ? userData.foodPreferences.split(',')
+      : userData.foodPreferences
+    : [];
+
+  return `Você é um nutricionista especializado. Gere um plano alimentar detalhado em JSON com:
+  
+  - Dieta: ${userData.dietType}
+  - Objetivo: ${userData.goal}
+  - Dados: ${userData.age} anos, ${userData.height}cm, ${userData.weight}kg
+  - Alergias: ${allergiesArray.join(', ') || 'Nenhuma'}
+  - Preferências: ${JSON.stringify(foodPreferencesArray)}
     
     Retorne um JSON estruturado com:
     {
