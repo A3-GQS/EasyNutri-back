@@ -122,9 +122,9 @@ Ainda em desenvolvimento.
 
 Para dúvidas ou contribuições, entre em contato com a equipe do projeto.
 
-Anna Clara - byasun
-Gabriel Bernardes - Gabber28
-Lucas Ramos - LucasRramos
+- Anna Clara - byasun
+- Gabriel Bernardes - Gabber28
+- Lucas Ramos - LucasRramos
 
 ---
 

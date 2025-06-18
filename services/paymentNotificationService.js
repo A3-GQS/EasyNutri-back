@@ -12,11 +12,6 @@ class PaymentNotificationService {
       apiUrl: config.mercadoPago.apiUrl || 'https://api.mercadopago.com'
     };
 
-    this.whatsAppConfig = {
-      apiUrl: config.whatsApp.apiUrl,
-      apiKey: config.whatsApp.apiKey,
-      senderNumber: config.whatsApp.senderNumber
-    };
   }
 
   async handlePaymentNotification(paymentId) {
@@ -115,11 +110,11 @@ class PaymentNotificationService {
     try {
       const preferenceData = {
         items: [
-          {
+          { 
             title: `Plano Nutricional - ${dietPlan.type}`,
             description: `Plano nutricional personalizado para ${userData.name}`,
             quantity: 1,
-            unit_price: dietPlan.price,
+            unit_price: Number(dietPlan.price),
             currency_id: 'BRL'
           }
         ],

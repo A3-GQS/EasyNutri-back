@@ -21,6 +21,11 @@ module.exports = {
     }
   },
 
+    pdf: {
+    storagePath: process.env.PDF_STORAGE_PATH || './storage/pdfs', // Caminho padrão
+    publicUrl: process.env.PDF_PUBLIC_URL || '/pdfs' // URL pública para acesso
+  },
+
   //Substituir pela api da IA que vamos realmente utilizar
   openai: {
     apiKey: process.env.OPENAI_API_KEY,
@@ -45,5 +50,17 @@ module.exports = {
       max: 100
     },
     aiDailyRequests: 20
-  }
+  },
+  
+  twilio: {
+    accountSid: process.env.TWILIO_ACCOUNT_SID,
+    authToken: process.env.TWILIO_AUTH_TOKEN,
+    whatsAppNumber: process.env.TWILIO_WHATSAPP_NUMBER
+  },
+
+   mercadoPago: {
+    accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN, // Adicione esta linha
+    apiUrl: process.env.MERCADO_PAGO_API_URL || 'https://api.mercadopago.com' // Adicione esta linha
+  },
+
 };

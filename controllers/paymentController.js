@@ -3,6 +3,7 @@ const EmailService = require('../services/emailService');
 const RecommendationService = require('../services/recommendationService');
 const logger = require('../config/logger');
 
+// controllers/paymentController.js
 class PaymentController {
   async handlePaymentConfirmation(paymentData) {
     try {
@@ -11,29 +12,9 @@ class PaymentController {
         throw new Error('Dados de pagamento inválidos');
       }
 
-      // 2. Gerar recomendação com IA
-      const recommendation = await RecommendationService.generateRecommendation(
-        paymentData.userId,
-        paymentData.userData
-      );
+      // 2. Aqui você pode adicionar lógica para atualizar o status do pagamento no banco de dados
 
-      // 3. Gerar PDF
-      const pdfPath = await PDFService.generateDietPDF(
-        paymentData.userData,
-        recommendation
-      );
-
-      // 4. Enviar por email
-      await EmailService.sendDietPDF(
-        paymentData.userData.email,
-        pdfPath,
-        paymentData.userData.name
-      );
-
-      // 5. Atualizar status no banco de dados
-      await this._updateUserAccess(paymentData.userId);
-
-      logger.info(`PDF enviado com sucesso para ${paymentData.userData.email}`);
+      logger.info(`Pagamento processado com sucesso: ${paymentData.id}`);
       return { success: true };
 
     } catch (error) {
@@ -45,15 +26,9 @@ class PaymentController {
   _validatePayment(paymentData) {
     return (
       paymentData &&
-      paymentData.userId &&
-      paymentData.userData &&
-      paymentData.status === 'approved'
+      paymentData.id && // Verifique se o ID do pagamento está presente
+      paymentData.status === 'approved' // Verifique se o pagamento foi aprovado
     );
-  }
-
-  async _updateUserAccess(userId) {
-    // Implemente a lógica para atualizar o status do usuário no banco
-    // Exemplo: UserModel.updateAccess(userId, { hasPaid: true, accessExpires: ... })
   }
 }
 
