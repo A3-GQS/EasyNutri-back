@@ -112,24 +112,22 @@ async createPaymentPreference(userData, dietPlan) {
       throw new Error('Dados do usuário incompletos para pagamento');
     }
 
-    // Formatar telefone (remover caracteres não numéricos)
-    const cleanedPhone = userData.phone.replace(/\D/g, '');
+    // Garantir que o preço seja válido
+    const price = dietPlan.price || 97.90; // Valor padrão de fallback
     
-    // Validar tamanho do telefone
-    if (cleanedPhone.length < 10 || cleanedPhone.length > 11) {
-      throw new Error(`Número de telefone inválido: ${userData.phone}`);
-    }
-
+    // Formatar telefone
+    const cleanedPhone = userData.phone.replace(/\D/g, '');
     const area_code = cleanedPhone.substring(0, 2);
     const number = cleanedPhone.substring(2);
 
+    // Montar payload com fallbacks
     const preferenceData = {
       items: [
         { 
           title: `Plano Nutricional - ${dietPlan.type || 'Personalizado'}`,
-          description: `Plano nutricional para ${userData.name}`,
+          description: `Plano para ${userData.name}`,
           quantity: 1,
-          unit_price: Number(dietPlan.price || 97.90), // Valor padrão
+          unit_price: Number(price),
           currency_id: 'BRL'
         }
       ],
@@ -157,6 +155,9 @@ async createPaymentPreference(userData, dietPlan) {
       auto_return: 'approved'
     };
 
+    // Log para depuração
+    logger.info('Enviando ao Mercado Pago:', preferenceData);
+
     const response = await axios.post(
       `${this.mercadoPagoConfig.apiUrl}/checkout/preferences`,
       preferenceData,
@@ -165,7 +166,7 @@ async createPaymentPreference(userData, dietPlan) {
           'Authorization': `Bearer ${this.mercadoPagoConfig.accessToken}`,
           'Content-Type': 'application/json'
         },
-        timeout: 10000 // 10 segundos timeout
+        timeout: 10000
       }
     );
 
@@ -174,7 +175,7 @@ async createPaymentPreference(userData, dietPlan) {
       paymentId: response.data.id
     };
   } catch (error) {
-    // Log detalhado do erro
+    // Log detalhado
     const errorDetails = error.response 
       ? `Status: ${error.response.status} - Data: ${JSON.stringify(error.response.data)}`
       : error.message;
@@ -182,8 +183,8 @@ async createPaymentPreference(userData, dietPlan) {
     logger.error('Erro detalhado ao criar preferência:', errorDetails);
     
     throw new Error('Falha ao criar link de pagamento');
+    } 
   }
-}
 }
 
 module.exports = new PaymentNotificationService();
