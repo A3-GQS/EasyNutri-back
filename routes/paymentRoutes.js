@@ -22,7 +22,7 @@ router.post('/create_preference', async (req, res) => {
     };
     const dietPlan = {
       type: 'Plano Básico', // Exemplo de tipo de plano
-      price: 1.00, // Exemplo de preço
+      price: 10.00, // Exemplo de preço
     };
     const preference = await PaymentNotificationService.createPaymentPreference(userData, dietPlan);
     res.json(preference);
