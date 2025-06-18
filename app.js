@@ -28,6 +28,7 @@ try {
   app.use('/api/diets', require('./routes/diets'));
   app.use('/api/calculations', require('./routes/calculations'));
   app.use('/api/payments', require('./routes/paymentRoutes'));
+  app.use('/api/diet-plans', require('./routes/dietPlanRoutes'));
 
   // Manipulador de erros aprimorado
   app.use((err, req, res, next) => {
