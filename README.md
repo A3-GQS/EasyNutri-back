@@ -116,6 +116,257 @@ npm start
 
 ---
 
+# Resultados do Questionário de Usabilidade – Nutrifácil
+
+## 🧾 Participante 1
+
+### Dados do Participante
+
+- **Nome / Código:** Participante001  
+- **Data:** 15/06/2025  
+- **Moderador:** Gabriel Bernardes  
+- **Dispositivo / Navegador:** Desktop / Chrome  
+
+### Tarefas
+
+| Nº | Descrição da Tarefa                               | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades                | Observações do Usuário            |
+|----|---------------------------------------------------|------------|----------------|---------------|-------------------------------------|-----------------------------------|
+| 1  | Selecionar a dieta “Low Carb”                     | 30 s       | 28             | S             | Nenhum                              | Interface clara                   |
+| 2  | Informar peso, altura e idade                     | 60 s       | 50             | S             | Nenhum                              | Tudo fácil de localizar           |
+| 3  | Escolher 3 alimentos que não come em cada categoria| 45 s      | 47             | S             | Confusão com categoria de legumes   | Poderia ter exemplos              |
+| 4  | Identificar onde registrar alergias/intolerâncias | 30 s       | 35             | S             | Demorou a encontrar                 | Ícone pouco visível               |
+| 5  | Gerar o plano alimentar e visualizar recomendações| 60 s       | 65             | S             | Leve lentidão                       | Visual bem organizado             |
+
+### Métricas de Satisfação
+
+| Critério                      | Nota (1–5) | Comentários                        |
+|-------------------------------|------------|-------------------------------------|
+| Facilidade de navegação       | 4          | Apenas uma etapa gerou dúvidas     |
+| Clareza das instruções        | 5          | Muito claras                       |
+| Velocidade de resposta        | 4          | Um pouco lento no final            |
+| Layout e design               | 5          | Interface agradável                |
+| Confiança ao usar a ferramenta| 5          | Muito confiável                    |
+
+---
+
+## 🧾 Participante 2
+
+### Dados do Participante
+
+- **Nome / Código:** Participante002  
+- **Data:** 15/06/2025  
+- **Moderador:** Anna Clara  
+- **Dispositivo / Navegador:** Smartphone / Safari  
+
+### Tarefas
+
+| Nº | Descrição da Tarefa                               | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades            | Observações do Usuário         |
+|----|---------------------------------------------------|------------|----------------|---------------|---------------------------------|--------------------------------|
+| 1  | Selecionar a dieta “Cetogênica”                   | 30 s       | 32             | S             | Botão difícil de achar          | Poderia estar mais visível     |
+| 2  | Informar peso, altura e idade                     | 60 s       | 60             | S             | Teclado cobriu campo            | Resolver com rolagem automática|
+| 3  | Escolher 3 alimentos que não come em cada categoria| 45 s      | 48             | S             | Nenhum                          | Tudo tranquilo                  |
+| 4  | Identificar onde registrar alergias/intolerâncias | 30 s       | 30             | S             | Nenhum                          | Simples de encontrar           |
+| 5  | Gerar o plano alimentar e visualizar recomendações| 60 s       | 63             | S             | Leve lentidão                   | Layout adaptado ao celular     |
+
+### Métricas de Satisfação
+
+| Critério                      | Nota (1–5) | Comentários                          |
+|-------------------------------|------------|---------------------------------------|
+| Facilidade de navegação       | 3          | Um pouco confuso no celular           |
+| Clareza das instruções        | 4          | Boas instruções                       |
+| Velocidade de resposta        | 3          | Poderia ser mais ágil                 |
+| Layout e design               | 4          | Adequado                             |
+| Confiança ao usar a ferramenta| 4          | Boa, mas poderia melhorar             |
+
+---
+
+## 🧾 Participante 3
+
+### Dados do Participante
+
+- **Nome / Código:** Participante003  
+- **Data:** 16/06/2025  
+- **Moderador:** Lucas Rodrigues  
+- **Dispositivo / Navegador:** Notebook / Firefox  
+
+### Tarefas
+
+| Nº | Descrição da Tarefa                               | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades         | Observações do Usuário        |
+|----|---------------------------------------------------|------------|----------------|---------------|-------------------------------|-------------------------------|
+| 1  | Selecionar a dieta “Mediterrânea”                 | 30 s       | 26             | S             | Nenhum                        | Intuitivo                     |
+| 2  | Informar peso, altura e idade                     | 60 s       | 55             | S             | Nenhum                        | Campos bem identificados      |
+| 3  | Escolher 3 alimentos que não come em cada categoria| 45 s      | 42             | S             | Nenhum                        | Interface clara               |
+| 4  | Identificar onde registrar alergias/intolerâncias | 30 s       | 27             | S             | Nenhum                        | Fácil de achar                |
+| 5  | Gerar o plano alimentar e visualizar recomendações| 60 s       | 58             | S             | Nenhum                        | Carregou rápido               |
+
+### Métricas de Satisfação
+
+| Critério                      | Nota (1–5) | Comentários                  |
+|-------------------------------|------------|-------------------------------|
+| Facilidade de navegação       | 5          | Muito fácil                  |
+| Clareza das instruções        | 5          | Perfeitas                    |
+| Velocidade de resposta        | 5          | Rápido                       |
+| Layout e design               | 5          | Muito bonito                 |
+| Confiança ao usar a ferramenta| 5          | Transmite segurança          |
+
+---
+
+## 🧾 Participante 4
+
+### Dados do Participante
+
+- **Nome / Código:** Participante004  
+- **Data:** 16/06/2025  
+- **Moderador:** Gabriel Bernardes  
+- **Dispositivo / Navegador:** Tablet / Edge  
+
+### Tarefas
+
+| Nº | Descrição da Tarefa                               | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades             | Observações do Usuário      |
+|----|---------------------------------------------------|------------|----------------|---------------|----------------------------------|-----------------------------|
+| 1  | Selecionar a dieta “Vegetariana”                  | 30 s       | 31             | S             | Confusão entre nomes parecidos   | Destacar nomes ajuda        |
+| 2  | Informar peso, altura e idade                     | 60 s       | 58             | S             | Nenhum                            | Layout ajustado             |
+| 3  | Escolher 3 alimentos que não come em cada categoria| 45 s      | 50             | S             | Alimentos mal categorizados      | Adicionar exemplos visuais  |
+| 4  | Identificar onde registrar alergias/intolerâncias | 30 s       | 29             | S             | Nenhum                            | Intuitivo                   |
+| 5  | Gerar o plano alimentar e visualizar recomendações| 60 s       | 61             | S             | Um pequeno atraso                 | Funciona bem em tablet      |
+
+### Métricas de Satisfação
+
+| Critério                      | Nota (1–5) | Comentários                    |
+|-------------------------------|------------|---------------------------------|
+| Facilidade de navegação       | 4          | Poderia destacar mais as opções|
+| Clareza das instruções        | 5          | Muito claras                   |
+| Velocidade de resposta        | 4          | Pequeno atraso                 |
+| Layout e design               | 4          | Bonito                         |
+| Confiança ao usar a ferramenta| 5          | Passa segurança                |
+
+---
+
+## 🧾 Participante 5
+
+### Dados do Participante
+
+- **Nome / Código:** Participante005  
+- **Data:** 17/06/2025  
+- **Moderador:** Anna Clara  
+- **Dispositivo / Navegador:** Desktop / Opera  
+
+### Tarefas
+
+| Nº | Descrição da Tarefa                               | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades              | Observações do Usuário           |
+|----|---------------------------------------------------|------------|----------------|---------------|-----------------------------------|----------------------------------|
+| 1  | Selecionar a dieta “Low Carb”                     | 30 s       | 27             | S             | Nenhum                            | Tudo direto                      |
+| 2  | Informar peso, altura e idade                     | 60 s       | 49             | S             | Nenhum                            | Preenchimento fácil              |
+| 3  | Escolher 3 alimentos que não come em cada categoria| 45 s      | 43             | S             | Dúvida sobre uma categoria        | Podia ter exemplo na tela        |
+| 4  | Identificar onde registrar alergias/intolerâncias | 30 s       | 32             | S             | Nenhum                            | Muito claro                      |
+| 5  | Gerar o plano alimentar e visualizar recomendações| 60 s       | 60             | S             | Nenhum                            | Plano gerado com clareza         |
+
+### Métricas de Satisfação
+
+| Critério                      | Nota (1–5) | Comentários                     |
+|-------------------------------|------------|----------------------------------|
+| Facilidade de navegação       | 5          | Muito fácil                     |
+| Clareza das instruções        | 4          | Boas, mas poderia ter exemplo   |
+| Velocidade de resposta        | 5          | Sem atrasos                     |
+| Layout e design               | 5          | Ótima estética                  |
+| Confiança ao usar a ferramenta| 5          | Transmite confiança             |
+
+---
+
+## 🧾 Participante 6
+
+### Dados do Participante
+
+- **Nome / Código:** Participante006  
+- **Data:** 17/06/2025  
+- **Moderador:** Lucas Rodrigues  
+- **Dispositivo / Navegador:** Notebook / Chrome  
+
+### Tarefas
+
+| Nº | Descrição da Tarefa                               | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades         | Observações do Usuário     |
+|----|---------------------------------------------------|------------|----------------|---------------|-------------------------------|----------------------------|
+| 1  | Selecionar a dieta “Cetogênica”                   | 30 s       | 30             | S             | Nenhum                        | Navegação fluida           |
+| 2  | Informar peso, altura e idade                     | 60 s       | 52             | S             | Nenhum                        | Preenchimento tranquilo    |
+| 3  | Escolher 3 alimentos que não come em cada categoria| 45 s      | 44             | S             | Nenhum                        | Tudo intuitivo             |
+| 4  | Identificar onde registrar alergias/intolerâncias | 30 s       | 30             | S             | Nenhum                        | Bem sinalizado             |
+| 5  | Gerar o plano alimentar e visualizar recomendações| 60 s       | 59             | S             | Nenhum                        | Sem problemas              |
+
+### Métricas de Satisfação
+
+| Critério                      | Nota (1–5) | Comentários                 |
+|-------------------------------|------------|------------------------------|
+| Facilidade de navegação       | 5          | Intuitivo                   |
+| Clareza das instruções        | 5          | Tudo explicado              |
+| Velocidade de resposta        | 5          | Muito bom                   |
+| Layout e design               | 5          | Esteticamente agradável     |
+| Confiança ao usar a ferramenta| 5          | Sistema confiável           |
+
+---
+
+## 🧾 Participante 7
+
+### Dados do Participante
+
+- **Nome / Código:** Participante007  
+- **Data:** 18/06/2025  
+- **Moderador:** Gabriel Bernardes  
+- **Dispositivo / Navegador:** Smartphone / Firefox  
+
+### Tarefas
+
+| Nº | Descrição da Tarefa                               | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades        | Observações do Usuário     |
+|----|---------------------------------------------------|------------|----------------|---------------|------------------------------|----------------------------|
+| 1  | Selecionar a dieta “Mediterrânea”                 | 30 s       | 29             | S             | Nenhum                       | Layout adaptado            |
+| 2  | Informar peso, altura e idade                     | 60 s       | 55             | S             | Nenhum                       | Preenchimento rápido       |
+| 3  | Escolher 3 alimentos que não come em cada categoria| 45 s      | 46             | S             | Nenhum                       | Fácil de navegar           |
+| 4  | Identificar onde registrar alergias/intolerâncias | 30 s       | 28             | S             | Nenhum                       | Muito claro                |
+| 5  | Gerar o plano alimentar e visualizar recomendações| 60 s       | 62             | S             | Leve lentidão no celular     | Recomendável               |
+
+### Métricas de Satisfação
+
+| Critério                      | Nota (1–5) | Comentários                   |
+|-------------------------------|------------|--------------------------------|
+| Facilidade de navegação       | 4          | Leve confusão no início       |
+| Clareza das instruções        | 5          | Muito claras                  |
+| Velocidade de resposta        | 4          | Carregamento aceitável        |
+| Layout e design               | 5          | Design bom mesmo no celular   |
+| Confiança ao usar a ferramenta| 5          | Muito confiável               |
+
+---
+
+## 🧾 Participante 8
+
+### Dados do Participante
+
+- **Nome / Código:** Participante008  
+- **Data:** 18/06/2025  
+- **Moderador:** Anna Clara  
+- **Dispositivo / Navegador:** Desktop / Edge  
+
+### Tarefas
+
+| Nº | Descrição da Tarefa                               | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades       | Observações do Usuário     |
+|----|---------------------------------------------------|------------|----------------|---------------|-----------------------------|----------------------------|
+| 1  | Selecionar a dieta “Vegetariana”                  | 30 s       | 30             | S             | Nenhum                      | Bem organizado             |
+| 2  | Informar peso, altura e idade                     | 60 s       | 56             | S             | Nenhum                      | Fácil preenchimento        |
+| 3  | Escolher 3 alimentos que não come em cada categoria| 45 s      | 46             | S             | Nenhum                      | Processo tranquilo         |
+| 4  | Identificar onde registrar alergias/intolerâncias | 30 s       | 30             | S             | Nenhum                      | Sinalização clara          |
+| 5  | Gerar o plano alimentar e visualizar recomendações| 60 s       | 63             | S             | Leve demora                 | Conteúdo útil              |
+
+### Métricas de Satisfação
+
+| Critério                      | Nota (1–5) | Comentários              |
+|-------------------------------|------------|---------------------------|
+| Facilidade de navegação       | 5          | Muito simples             |
+| Clareza das instruções        | 5          | Extremamente claras       |
+| Velocidade de resposta        | 4          | Leve atraso               |
+| Layout e design               | 5          | Muito agradável           |
+| Confiança ao usar a ferramenta| 5          | Passa segurança total     |
+
+
+---
+
 ## Cenários Gherkin
 
 ```
