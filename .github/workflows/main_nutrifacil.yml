@@ -34,7 +34,7 @@ jobs:
           name: node-app
           path: |
             ./*
-            !node_modules/.cache
+            node_modules/.cache
 
   deploy:
     runs-on: ubuntu-latest
