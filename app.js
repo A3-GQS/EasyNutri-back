@@ -44,7 +44,7 @@ try {
     });
   });
 
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 8080;
   app.listen(PORT, () => {
     console.log(`[TESTE] Servidor rodando na porta ${PORT}`); // Linha adicional
     logger.info(`Servidor rodando na porta ${PORT} [${process.env.NODE_ENV || 'development'}]`);

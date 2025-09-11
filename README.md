@@ -71,7 +71,7 @@ npm install
 3. Configure as variáveis de ambiente no arquivo `.env`. Exemplo:
 
 ```
-PORT=3000
+PORT=8080
 MONGODB_URI=seu_string_de_conexao_mongodb
 OPENAI_API_KEY=sua_chave_openai
 MERCADOPAGO_ACCESS_TOKEN=seu_token_mercadopago
