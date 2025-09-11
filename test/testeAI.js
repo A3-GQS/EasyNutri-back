@@ -1,4 +1,4 @@
-const AIService = require('./services/aiService');
+const AIService = require('../services/aiService');
 const fs = require('fs');
 const path = require('path');
 

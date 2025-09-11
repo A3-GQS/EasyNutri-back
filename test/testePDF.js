@@ -1,5 +1,5 @@
 // testePDF.js
-const PDFService = require('./services/pdfService'); // Ajuste o caminho conforme necessário
+const PDFService = require('../services/pdfService'); // Ajuste o caminho conforme necessário
 const path = require('path');
 
 // Dados de exemplo para o usuário

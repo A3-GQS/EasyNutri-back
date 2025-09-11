@@ -1,8 +1,8 @@
 // testeWPP.js
-const WhatsAppService = require('./services/whatsAppService');
+const WhatsAppService = require('../services/whatsAppService');
 const path = require('path');
 const fs = require('fs');
-const logger = require('./config/logger');
+const logger = require('../config/logger');
 
 // Configurações para teste (pode ser movido para .env depois)
 const TEST_CONFIG = {
