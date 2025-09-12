@@ -61,3 +61,5 @@ yarn.lock
 *.zip
 
 *.npmrc
+
+node_modules/
