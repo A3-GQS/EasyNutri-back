@@ -43,7 +43,6 @@ Thumbs.db
 *.sw?
 
 ## Arquivos do npm/yarn ##
-package-lock.json
 yarn.lock
 
 ## Arquivos de cache ##
